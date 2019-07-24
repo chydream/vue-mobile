@@ -205,8 +205,8 @@ export default {
         }
     },
     created () {
-        this.getUrlList()
-        this.getReadData()
+        // this.getUrlList()
+        // this.getReadData()
         this.getTokenByMoblie()
     },
     methods: {

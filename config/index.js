@@ -12,19 +12,12 @@ module.exports = {
     assetsPublicPath: '/localDevServer/',
     proxyTable: {
       '/api': {
-          target: 'http://t-apiv2-stucard.xueerqin.net/',
+          target: 'http://t-public-api.xueerqin.net/api/',
           changeOrigin: true,
           pathRewrite: {
               '^/api': '/'
           }
-      },
-      '/apiNew': {
-        target: 'http://t-public-api.xueerqin.net/',
-        changeOrigin: true,
-        pathRewrite: {
-            '^/apiNew': '/'
-        }
-      },
+      }
     },
 
     // Various Dev Server settings

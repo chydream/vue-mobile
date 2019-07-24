@@ -5,7 +5,7 @@ import {baseUrl} from '@/config/config'
 export const getUrlList = (params) => {
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/api/api/MOAuth/GetUrlList',
+            url: baseUrl + '/api/MOAuth/GetUrlList',
             method: 'get',
         }).then(res => {
             resolve(res.data)
@@ -16,7 +16,7 @@ export const getUrlList = (params) => {
 export const getReadData = (params) => {
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/api/api/MSos/GetReadData?data=' + JSON.stringify(params),
+            url: baseUrl + '/api/MSos/GetReadData?data=' + JSON.stringify(params),
             method: 'get',
         }).then(res => {
             resolve(res.data)
@@ -28,7 +28,7 @@ export const getTokenByMoblie = (params) => {
     console.log(123)
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/apiNew/api/MToken/GetTokenByMoblie',
+            url: baseUrl + '/api/MToken/GetTokenByMoblie',
             method: 'get',
         }).then(res => {
             resolve(res.data)
