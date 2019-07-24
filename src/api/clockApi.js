@@ -25,11 +25,11 @@ export const getUserInfo = () => {
             resolve(res.data)
         }).catch((error)=>{
             // console.log(error)
-            Vue.$vux.toast.show({
-                text:'请重新扫码',
-                type:'cancel',
-                time:3000
-            })
+            // Vue.$vux.toast.show({
+            //     text:'请重新扫码',
+            //     type:'cancel',
+            //     time:3000
+            // })
         })
     })
 }

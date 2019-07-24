@@ -14,7 +14,7 @@ Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 FastClick.attach(document.body)
 require('es6-promise').polyfill()
-// import './util/rem'
+import './util/rem'
 import './mixins/install'
 Vue.config.productionTip = false
 

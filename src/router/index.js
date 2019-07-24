@@ -15,7 +15,7 @@ const router =  new Router({
         {
           path: 'index',
           name: 'HomeIndex',
-          component: () => import(/* webpackChunkName: "mobile" */'@/mobile/mvue/views/clock/Clock'),
+          component: () => import(/* webpackChunkName: "mobile" */'@/mobile/mvue/views/menu/index'),
           meta:{
             title:'扫码签到'
           }

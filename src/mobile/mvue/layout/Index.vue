@@ -1,11 +1,11 @@
 <template>
   <div class="layout">
-    <div class="layout-header">
+    <!--<div class="layout-header">
       <i class="micon micon-1" @click="goBack"></i>
       <div>{{title}}</div>
       <i class="micon micon-2" v-if="$route.path == '/calendar'"></i>
       <i class="micon micon-3" v-if="$route.path == '/index'||$route.path == '/sign-clock'" @click="goUrl('/calendar')"></i>
-    </div>
+    </div>-->
     <div class="layout-main">
         <transition name="fade">
             <router-view></router-view>
@@ -32,7 +32,7 @@ export default {
     }
   },
   created () {
-    this.getUserInfo();//获取用户信息
+    // this.getUserInfo();//获取用户信息
   },
   mounted () {
   },
@@ -99,7 +99,7 @@ export default {
       top: 0;
   }
   .layout-main{
-    padding: 41px 0 0;
+    padding: 0px 0 0;
     box-sizing: border-box;
     overflow: hidden;
     width: 100%;
