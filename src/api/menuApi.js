@@ -28,7 +28,7 @@ export const getTokenByMoblie = (params) => {
     console.log(123)
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/api/MToken/GetTokenByMoblie',
+            url: baseUrl + '/api/MToken/GetTokenByMoblie?data=' + JSON.stringify(params),
             method: 'get',
         }).then(res => {
             resolve(res.data)

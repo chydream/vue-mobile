@@ -11,13 +11,20 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/localDevServer/',
     proxyTable: {
-      '/api': {
-          target: 'http://t-public-api.xueerqin.net/api/',
+      '/api/MToken': {
+          target: 'http://t-public-api.xueerqin.net/api/MToken/',
           changeOrigin: true,
           pathRewrite: {
-              '^/api': '/'
+              '^/api/MToken': '/'
           }
-      }
+      },
+      '/api': {
+        target: 'http://t-apiv2-stucard.xueerqin.net/api/',
+        changeOrigin: true,
+        pathRewrite: {
+            '^/api': '/'
+        }
+      },
     },
 
     // Various Dev Server settings

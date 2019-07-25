@@ -2,19 +2,31 @@
     <div id="menu">
         <div class="nav_title">
             <img class="logo_index" src="./img/indexlogo.png" />
-            <div class="nav_person">
-                <img class="per_img" src="./img/chid.png" />
-                <span>刘欣然</span>
+            <div class="nav_person" @click="showList">
+                <img class="per_img" :src="itemData.Img" />
+                <span>{{itemData.RealName}}</span>
                 <img class="changest" src="./img/changest.png" />
             </div>
         </div>
         <div class="banner">
             <img src="./img/banner2.png" />
         </div>
+        <div id="muserList" v-show="isShowList">
+            <div class="windows"></div> 
+            <div class="person_list">
+                <ul>
+                    <li v-for="(item,index) in classData" :key="index" @click="showList(item)">
+                        <img :src="item.Img" class="pern_img">
+                        <span>{{item.RealName}}</span>
+                        <label>{{item.GradeName}}{{item.ClassName}}</label>
+                    </li>
+                </ul> 
+            </div>
+        </div>
         <div class="workbench workbenchim">
             <h2 class="workbenc_h2"><img src="./img/tit_left.png"/><div>基础惠享功能</div><img src="./img/tit_right.png"/></h2>
             <ul>
-                <li v-for="(item,index) in baseData">
+                <li v-for="(item,index) in baseData" :key="index">
                     <a :href="item.url"><i><img :src="baseUrl+item.imgUrl"></i>
                         <p>{{item.name}}</p>
                     </a>
@@ -42,7 +54,7 @@
         <div class="workbench workbenchim">
             <h2 class="workbenc_h2"><img src="./img/tit_left.png"/><div>VIP尊享功能</div><img src="./img/tit_right.png"/></h2>
             <ul>
-                <li v-on:click="clickShow('1', item.url)" v-for="(item,index) in vipData">
+                <li v-on:click="clickShow('1', item.url)" v-for="(item,index) in vipData" :key="index">
                     <a href="javascript:void(0)"><i><img :src="baseUrl+item.imgUrl"></i>
                         <p>{{item.name}}</p>
                     </a>
@@ -98,7 +110,7 @@
         <div class="workbench workbenchim">
             <h2 class="workbenc_h2"><img src="./img/tit_left.png"/><div>亲情一卡通功能</div><img src="./img/tit_right.png"/></h2>
             <ul>
-                <li v-for="(item,index) in cardData">
+                <li v-for="(item,index) in cardData" :key="index">
                     <a :href="item.url"><i><img :src="baseUrl+item.imgUrl"></i>
                         <p>{{item.name}}</p>
                     </a>
@@ -201,12 +213,16 @@ export default {
             baseData: [],
             vipData: [],
             cardData: [],
-            baseUrl:'http://mappv2.xueerqin.net'
+            baseUrl:'http://mappv2.xueerqin.net',
+            isShowList: false,
+            readData: [],
+            classData: [],
+            itemData: {}
         }
     },
     created () {
-        // this.getUrlList()
-        // this.getReadData()
+        this.getUrlList()
+        this.getReadData()
         this.getTokenByMoblie()
     },
     methods: {
@@ -229,21 +245,33 @@ export default {
         },
         getReadData () {
             var params = {
-                studentId:'984ff3cb0791493597288b523d89cead'
+                classId: '',
+                studentId:'984ff3cb0791493597288b523d89cead',
+                typeId: 1
             }
             this.$store.dispatch('menu/GetReadData',params).then(res => {
                 console.log(res)
             })
         },
         getTokenByMoblie () {
-            this.$store.dispatch('menu/GetTokenByMoblie','').then(res => {
-                console.log(res)
+            var params = {
+                roleCode: 'Parent'
+            }
+            this.$store.dispatch('menu/GetTokenByMoblie',params).then(res => {
+                // console.log(res)
+                var data = JSON.parse(res).Data.MChildList
+                this.classData = data
+                // console.log(this.classData)
             })
         },
         clickShow (params,url) {
             // this.tanShow = params
             location.href = url
-        }     
+        },
+        showList (item) {
+            this.isShowList = !this.isShowList
+            this.itemData = item
+        }    
     }
 }
 </script>
