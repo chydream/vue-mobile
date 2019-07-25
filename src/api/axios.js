@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import {getCookiesObj} from '@/util/tool.js'
 axios.defaults.timeout = 10000
-axios.defaults.withCredentials = true // 跨域请求，允许保存cookie
+axios.defaults.withCredentials = false // 跨域请求，允许保存cookie
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
 	if (store.getters.token) {

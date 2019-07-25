@@ -1,6 +1,6 @@
 import axios from './axios'
 import qs from 'qs'
-import {baseUrl} from '@/config/config'
+import {baseUrl, baseUrl2} from '@/config/config'
 // 获取menu数据接口
 export const getUrlList = (params) => {
     return new Promise((resolve, reject) => {
@@ -27,7 +27,7 @@ export const getReadData = (params) => {
 export const getTokenByMoblie = (params) => {
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/api/MToken/GetTokenByMoblie?data=' + JSON.stringify(params),
+            url: baseUrl2 + '/api/MToken/GetTokenByMoblie?data=' + JSON.stringify(params),
             method: 'get',
         }).then(res => {
             resolve(res.data)
