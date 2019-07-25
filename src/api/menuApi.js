@@ -5,7 +5,7 @@ import {baseUrl} from '@/config/config'
 export const getUrlList = (params) => {
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/api/MOAuth/GetUrlList',
+            url: baseUrl + '/api/MOAuth/GetUrlList?data=' + JSON.stringify(params),
             method: 'get',
         }).then(res => {
             resolve(res.data)
@@ -25,7 +25,6 @@ export const getReadData = (params) => {
 }
 // 获取登录token 信息存入Cookies和catcher
 export const getTokenByMoblie = (params) => {
-    console.log(123)
     return new Promise((resolve, reject) => {
         axios({
             url: baseUrl + '/api/MToken/GetTokenByMoblie?data=' + JSON.stringify(params),

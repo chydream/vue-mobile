@@ -12,10 +12,10 @@
             <img src="./img/banner2.png" />
         </div>
         <div id="muserList" v-show="isShowList">
-            <div class="windows"></div> 
+            <div class="windows" @click="showList()"></div> 
             <div class="person_list">
                 <ul>
-                    <li v-for="(item,index) in classData" :key="index" @click="showList(item)">
+                    <li v-for="(item,index) in classData" :key="index" @click="showListItem(item)">
                         <img :src="item.Img" class="pern_img">
                         <span>{{item.RealName}}</span>
                         <label>{{item.GradeName}}{{item.ClassName}}</label>
@@ -27,28 +27,13 @@
             <h2 class="workbenc_h2"><img src="./img/tit_left.png"/><div>基础惠享功能</div><img src="./img/tit_right.png"/></h2>
             <ul>
                 <li v-for="(item,index) in baseData" :key="index">
+                    <label v-if="item.name=='通知公告'&&notice!=0">{{notice}}</label>
+                    <label v-if="item.name=='家庭作业'&&task!=0">{{task}}</label>
+                    <label v-if="item.name=='学生请假'&&leave!=0">{{leave}}</label>
                     <a :href="item.url"><i><img :src="baseUrl+item.imgUrl"></i>
                         <p>{{item.name}}</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="#"><i><img src="./img/kcb.png"></i>
-                        <p>课程表</p>
-                    </a>
-                </li>
-                <li><label>9</label>
-                    <a href="#"><i><img src="./img/jtzy.png"></i>
-                        <p>家庭作业</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/xsqj.png"></i>
-                        <p>学生请假</p>
-                    </a>
-                </li>-->
-
-                <!--				<li v-on:click="clickShow('1')"><a><i><img src="./img/jcbd.png"></i><p>解除绑定</p></a></li>
--->
             </ul>
         </div>
         <div class="workbench workbenchim">
@@ -59,52 +44,6 @@
                         <p>{{item.name}}</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="#"><i><img src="./img/ctb.png"></i>
-                        <p>错题本</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/qhlx.png"></i>
-                        <p>强化练习</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/ktlx.png"></i>
-                        <p>课堂练习</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/ktlb.png"></i>
-                        <p>课堂录播</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/mclz.png"></i>
-                        <p>明厨亮灶</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/zhpj.png"></i>
-                        <p>综合评价</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/yqjz.png"></i>
-                        <p>邀请家长</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/xxzy.png"></i>
-                        <p>学习资源</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/msyk.png"></i>
-                        <p>名师优课</p>
-                    </a>
-                </li>-->
-
             </ul>
         </div>
         <div class="workbench workbenchim">
@@ -115,41 +54,6 @@
                         <p>{{item.name}}</p>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="#"><i><img src="./img/ssdw.png"></i>
-                        <p>时时定位</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/ljzz.png"></i>
-                        <p>路径追踪</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/dzwl.png"></i>
-                        <p>电子围栏</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/yyjh.png"></i>
-                        <p>语音监护</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/sbxx.png"></i>
-                        <p>设备信息</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/sos.png"></i>
-                        <p>SOS</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><i><img src="./img/sz.png"></i>
-                        <p>设置</p>
-                    </a>
-                </li>-->
             </ul>
         </div>
         <div class="b-banner">
@@ -198,10 +102,10 @@
 
         <!--解除绑定弹框-->
         <!--<div class="j-tan" v-if="tanShow=='1'">
-        <img src="./img/w-ico.png" />
-        <p>是否解除绑定？</p>
-        <a v-on:click="clearOpenid">确定</a><a v-on:click="clickShow('0')">取消</a>
-    </div>-->
+            <img src="./img/w-ico.png" />
+            <p>是否解除绑定？</p>
+            <a v-on:click="clearOpenid">确定</a><a v-on:click="clickShow('0')">取消</a>
+        </div>-->
     </div>
 </template>
 <script>
@@ -217,17 +121,42 @@ export default {
             isShowList: false,
             readData: [],
             classData: [],
-            itemData: {}
+            itemData: {},
+            notice: 0,
+            task:0,
+            leave: 0,
+            cookiesObj:{}
         }
     },
     created () {
-        this.getUrlList()
-        this.getReadData()
+        var cookies = "Token=5e92ccaa; OpenId=; returnCode=window.location.href%3D%22http%3A%2F%2Ft-mappv2.xueerqin.net%2Fcommon%2Flogin.shtml%23page2%22; loginName=14100000001; roleCode=Parent; parentId=f888ad84b7564dbe98abc21528eaa835; realName=%E5%90%B4%E6%B3%BD%E6%88%90%E5%A7%A8%E5%A7%A8; loginUserId=f06bb0e73f284f1ba70b08cfb55874ce; img=null; studentId=984ff3cb0791493597288b523d89cead"
+        this.cookiesObj = this.getCookiesObj(cookies)
+        // console.log(this.cookiesObj)
+        this.getUrlList(this.cookiesObj.classId,this.cookiesObj.gradeId,this.cookiesObj.schoolId,this.cookiesObj.realName)
+        this.getReadData(this.cookiesObj.studentId,'')
         this.getTokenByMoblie()
     },
     methods: {
-        getUrlList () {
-            this.$store.dispatch('menu/GetUrlList').then(res => {
+        getUrlList (classId,gradeId,schoolId,realName) {
+            this.baseData = []
+            this.vipData = []
+            this.cardData = []
+            var params = {
+                classId:classId,
+                gradeId:gradeId,
+                schoolId:schoolId,
+                realName:realName,
+                img:this.cookiesObj.img,
+                OpenId:this.cookiesObj.OpenId,
+                Token:this.cookiesObj.Token,
+                loginName:this.cookiesObj.loginName,
+                loginUserId:this.cookiesObj.loginUserId,
+                returnCode:this.cookiesObj.returnCode,
+                roleCode:this.cookiesObj.roleCode,
+                teacherId:this.cookiesObj.teacherId,
+                studentId:this.cookiesObj.studentId,
+            }
+            this.$store.dispatch('menu/GetUrlList',params).then(res => {
                 var data = JSON.parse(res).Data.parentVip
                 // console.log(data)
                 data.forEach((item,index) =>{
@@ -243,14 +172,33 @@ export default {
                 })
             })
         },
-        getReadData () {
+        getReadData (studentId,classId) {
             var params = {
-                classId: '',
-                studentId:'984ff3cb0791493597288b523d89cead',
+                classId: classId,
+                studentId:studentId,
                 typeId: 1
             }
             this.$store.dispatch('menu/GetReadData',params).then(res => {
-                console.log(res)
+                var data = JSON.parse(res).Data
+                this.notice = data.UnReadCount
+            })
+            var params = {
+                classId: classId,
+                studentId:studentId,
+                typeId: 2
+            }
+            this.$store.dispatch('menu/GetReadData',params).then(res => {
+                var data = JSON.parse(res).Data
+                this.task = data.UnReadCount
+            })
+            var params = {
+                classId: classId,
+                studentId:studentId,
+                typeId: 3
+            }
+            this.$store.dispatch('menu/GetReadData',params).then(res => {
+                var data = JSON.parse(res).Data
+                this.leave = data.UnReadCount
             })
         },
         getTokenByMoblie () {
@@ -262,15 +210,35 @@ export default {
                 var data = JSON.parse(res).Data.MChildList
                 this.classData = data
                 // console.log(this.classData)
+                for(var i=0;i<this.classData.length;i++){
+                    if(this.classData[i].SelfId == this.cookiesObj.studentId){
+                        this.itemData = this.classData[i]
+                    }
+                }
             })
         },
         clickShow (params,url) {
             // this.tanShow = params
             location.href = url
         },
-        showList (item) {
+        showListItem (item) {
+            // console.log(item)
             this.isShowList = !this.isShowList
             this.itemData = item
+            //this.getUrlList(item.ClassId,item.GradeId,item.SchoolId,item.RealName)
+            this.getReadData(item.SelfId,item.ClassId)
+        },
+        showList () {
+            this.isShowList = !this.isShowList
+        },
+        getCookiesObj (cookies) {
+            var arr = cookies.split(";")
+            var obj = {}
+            for(var i=0;i<arr.length;i++){
+                var newArr = arr[i].split("=")
+                obj[newArr[0].trim()]=newArr[1]
+            }
+            return obj
         }    
     }
 }
