@@ -12,7 +12,7 @@
   "dependencies": {
     "es6-promise": "^4.2.6",
     "fastclick": "^1.0.6",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "less": "^3.9.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
